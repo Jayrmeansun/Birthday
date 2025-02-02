@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>วันนี้วันอะไรน้าาา 🎂💕</h1>
+        <h1>อย่าลืมเลื่อนดูภาพก่อนนะครับบ</h1>
+        
+        <!-- แกลเลอรีรูปภาพ -->
+        <div class="gallery">
+            <button id="prev">⬅️</button>
+            <img id="gallery-img" src="image1.jpg" alt="รูปภาพ">
+            <button id="next">➡️</button>
+        </div>
+
+        <!-- ซ่อนลิงก์รูปภาพในแกลเลอรี -->
+        <div id="image-list" style="display: none;">
+            <img src="image1.jpg" alt="รูปภาพ 1">
+            <img src="image2.jpg" alt="รูปภาพ 2">
+            <img src="image3.jpg" alt="รูปภาพ 3">
+            <img src="image4.jpg" alt="รูปภาพ 4">
+            <img src="image5.jpg" alt="รูปภาพ 5">
+            <img src="image6.jpg" alt="รูปภาพ 6">
+            <img src="image7.jpg" alt="รูปภาพ 7">
+        </div>
+        
+        <!-- ควิซเกี่ยวกับแฟน -->
+        <div class="quiz">
+            <h2>วันนี้วันเกิดต้นไผ่ใช่รึป่าวว 💕</h2>
+            <button class="answer" id="next-page-btn">ใช่เลย!</button>
+        </div>
+        
+        <!-- เพลงประกอบ -->
+        <audio id="bg-music" loop>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+        <button id="play-music">🎵 เล่นเพลง</button>
+    </div>
+    
+    <script>
+        const images = [
+            "image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", 
+            "image5.jpg", "image6.jpg", "image7.jpg"
+        ];
+        let currentIndex = 0;
+
+        const galleryImg = document.getElementById("gallery-img");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+
+        function showImage(index) {
+            galleryImg.src = images[index];
+        }
+
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+
+        // แสดงรูปภาพแรกเริ่มต้น
+        showImage(currentIndex);
+
+        // การเปลี่ยนหน้าไปยังหน้าคำอวยพร
+        document.getElementById("next-page-btn").addEventListener("click", () => {
+            window.location.href = "wishes.html";
+        });
+    </script>
+</body>
+</html>
