@@ -10,7 +10,7 @@
     <div class="container">
         <h1>วันนี้วันอะไรน้าาา 🎂💕</h1>
         <h1>มีภาพให้เลื่อนดูเยอะเลยนะ</h1>
-        
+
         <!-- แกลเลอรีรูปภาพ -->
         <div class="gallery">
             <button id="prev">⬅️</button>
@@ -28,21 +28,21 @@
             <img src="image6.jpg" alt="รูปภาพ 6">
             <img src="image7.jpg" alt="รูปภาพ 7">
         </div>
-        
+
         <!-- ควิซ -->
         <div class="quiz">
             <h2>วันนี้วันเกิดต้นไผ่ใช่ไหมน้าาา 💕</h2>
             <h2>ลองกดเปิดเพลงฟังดูหน่อยป่าว</h2>
             <button class="answer" id="next-page-btn">ใช่เลย!</button>
         </div>
-        
+
         <!-- เพลงประกอบ -->
         <audio id="bg-music" loop>
             <source src="music.mp3" type="audio/mpeg">
         </audio>
         <button id="play-music">🎵 เล่นเพลง</button>
     </div>
-    
+
     <script>
         const images = [
             "image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", 
@@ -80,9 +80,19 @@
         const playButton = document.getElementById("play-music");
         const bgMusic = document.getElementById("bg-music");
 
+        // ตรวจสอบว่าเพลงเคยเล่นหรือไม่
+        if (localStorage.getItem("isMusicPlaying") === "true") {
+            bgMusic.play();
+        }
+
         playButton.addEventListener("click", () => {
             bgMusic.play();
-            bgMusic.volume = 1.0; // เสียงดังสุด
+            bgMusic.volume = 1.0;
+            localStorage.setItem("isMusicPlaying", "true");
+        });
+
+        window.addEventListener("beforeunload", () => {
+            localStorage.setItem("isMusicPlaying", bgMusic.paused ? "false" : "true");
         });
     </script>
 </body>
